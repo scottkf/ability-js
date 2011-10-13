@@ -1,6 +1,11 @@
 { "name": "ability"
 , "version": "0.0.1"
-, "engines": ["node >= 0.4.0"]
+, "homepage": "https://github.com/scottkf/ability-js/",
+, "repository": {
+    "type": "git",
+    "url": "git://github.com/scottkf/ability-js.git"
+  }
+ , "engines": ["node >= 0.4.0"]
 , "author": "Scott Tesoriere <scott@tesoriere.com> (https://tesoriere.com/)"
 , "keywords": [
     "acl",
