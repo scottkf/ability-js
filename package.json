@@ -6,6 +6,7 @@
     "url": "git://github.com/scottkf/ability-js.git"
   }
 , "engines": ["node >= 0.4.0"]
+, "description": "A simple route-based ACL component for expressjs."
 , "author": "Scott Tesoriere <scott@tesoriere.com> (https://tesoriere.com/)"
 , "keywords": [
     "acl",
