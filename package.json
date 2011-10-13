@@ -1,11 +1,14 @@
 { "name": "ability"
 , "version": "0.0.1"
 , "engines": ["node >= 0.4.0"]
-, "main": "app.js"
+, "author": "Scott Tesoriere <scott@tesoriere.com> (https://tesoriere.com/)"
+, "keywords": [
+    "acl",
+    "everyauth",
+    "express"
+  ],
+, "main": "./index.js"
 , "dependencies":
   { "express":          ">= 2.2.2"
-  }
-, "scripts":
-  { "test": "nodeunit test/*/*"
   }
 }
