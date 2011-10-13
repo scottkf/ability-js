@@ -31,7 +31,7 @@ abilities = {
     index: ['read'],
   }
 }
-var ability = require('./lib/ability-js');
+var ability = require('ability');
 ability.add(abilities);
 ```
 
