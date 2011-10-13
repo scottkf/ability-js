@@ -6,7 +6,7 @@
     "acl",
     "everyauth",
     "express"
-  ],
+  ]
 , "main": "./index.js"
 , "dependencies":
   { "express":          ">= 2.2.2"
