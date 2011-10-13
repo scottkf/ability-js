@@ -8,36 +8,44 @@ A simple route-based ACL component for express.js. This won't handle actual auth
 
 ## Using this with everyauth:
 
-1. This assumes you have, in your everyauth setup, a field called "role" (customizable, see below). For example, if you're using facebook:
+This assumes you have, in your everyauth setup, a field called "role" (customizable, see below). For example, if you're using facebook:       
 
-    everyauth.facebook.extractExtraRegistrationParams( function (req) {
-		return {
-	  	  role: "some default role"
-	  	}
-	});
+```javascript
+everyauth.facebook.extractExtraRegistrationParams( function (req) {
+  return {
+    role: "some default role"
+  }
+});
+```
 Obviously this doesn't make much sense without persistence, so you can change the roles, but you can achieve that with mongoose-auth or a custom solution.
     
-2. If you have everyauth working in an expressjs app, all you have to do to your app.js is add the following
+If you have everyauth working in an expressjs app, all you have to do to your app.js is add the following
 
-    abilities = {
-	  editor: {
-	    index: ['read'],
-	    protected: ['read']
-	  },
-	  default: {
-	    index: ['read'],
-	  }
-	}
-	var ability = require('./lib/ability-js');
-	ability.add(abilities);
-	This is route-based, and assumes you're going to have 2 routes, `app.get /protected` and `app.get /`.
-	**Note**: You must specify a 'default'.
+```javascript
+abilities = {
+  editor: {
+    index: ['read'],
+    protected: ['read']
+  },
+  default: {
+    index: ['read'],
+  }
+}
+var ability = require('./lib/ability-js');
+ability.add(abilities);
+```
 
-3. Then, in the route:
+This is route-based, and assumes you're going to have 2 routes, `app.get /protected` and `app.get /`.
+**Note**: You must specify a 'default'.
 
-    app.get('/protected', function(req, res) {
-	  authorize() || res.render('protected');
-	});
+Then, in the route:
+
+```javascript
+app.get('/protected', function(req, res) {
+  authorize() || res.render('protected');
+});
+```
+
 This will check to see if the user is authorized based on the setup above. According to the above setup, an un-authenticated user would not be authorized for this route. 
 
 
