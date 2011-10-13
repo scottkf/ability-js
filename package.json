@@ -1,0 +1,11 @@
+{ "name": "ability"
+, "version": "0.0.1"
+, "engines": ["node >= 0.4.0"]
+, "main": "app.js"
+, "dependencies":
+  { "express":          ">= 2.2.2"
+  }
+, "scripts":
+  { "test": "nodeunit test/*/*"
+  }
+}
