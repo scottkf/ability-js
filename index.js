@@ -27,7 +27,7 @@ authorize = function(action, target, role) {
 	res = arguments.callee.caller.arguments[1];
 
 
-	if (req.user) {
+	if (req.user && req.user[role_name]) {
 		role = req.user[role_name];
 	}
 
