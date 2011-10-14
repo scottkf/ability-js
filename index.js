@@ -42,13 +42,11 @@ authorize = function(action, target, role) {
 		value = ability.can_ability(role, action, target);		
 	}
 
-
 	if (ability.redirect == true && value == false) {
-	  req.flash("alert", ability.redirect_message);
 	  res.render = function(view, options, fn) {
+  	  req.flash("alert", ability.redirect_message);
   		res.redirect(ability.redirect_to);
 	  }
 	}
-	return !value;
 
 }
