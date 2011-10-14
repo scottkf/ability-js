@@ -75,6 +75,16 @@ On the routes, you may specify one of 4 options, 'read', 'write', 'delete', or '
 2. Write -> Put/post
 3. Delete -> Delete
 4. All -> Read/Write/Delete
+
+###View helpers
+
+In jade:
+
+    p= able.to('read', 'protected')
+
+In EJS:
+
+    <%- able.to('read', 'protected')>
 	
 
 ## Options
@@ -102,6 +112,6 @@ On the routes, you may specify one of 4 options, 'read', 'write', 'delete', or '
 
 ## Todo:
 
-- Add helpers to be exposed to views
+- Change helpers so you can just go can('read', 'whatever')
 - Add customizeable flash message for redirect
 - Flesh out tests more

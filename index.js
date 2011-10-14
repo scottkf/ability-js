@@ -1,5 +1,5 @@
-var ability = new (require('./lib/ability'))()
-  , helpers = require('./lib/helpers');
+var ability = new (require('./lib/ability'))();
+  // , helpers = require('./lib/helpers');
 
 exports = module.exports = createAbilities;
 
@@ -19,7 +19,14 @@ exports.configure = function(options) {
 	}
 }
 exports.addHelpers = function(app) {
-	helpers(app);
+	app.dynamicHelpers({
+	    able: function (req, res) {
+      	if (req.user) {
+      		ability.can.role = req.user[ability.role_name];
+      	}
+        return ability;
+	    }
+	});
 }
 
 authorize = function(action, target, role) {
@@ -28,18 +35,18 @@ authorize = function(action, target, role) {
 
 
 	if (req.user) {
-		role = req.user[ability.role_name];
+		ability.role = req.user[ability.role_name];
+	}
+	if (role) {
+	  ability.role = role;
 	}
 
-	if (role == null) {
-		role = 'default';
-	}
 	// extrapolating everything from the req.route
 	if (target == null && action == null) {
-		value = ability.can_role(req, role);
+		value = ability.can_role(req);
 	} else {
 		// everything is explicitly defined or the user is not using everyauth
-		value = ability.can_ability(role, action, target);		
+		value = ability.can_ability(action, target);		
 	}
 
 	if (ability.redirect == true && value == false) {
