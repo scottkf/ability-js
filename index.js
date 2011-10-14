@@ -1,24 +1,20 @@
-var ability = require('./lib/ability')
+var ability = new (require('./lib/ability'))()
   , helpers = require('./lib/helpers');
 
 exports = module.exports = createAbilities;
 
 function createAbilities(abilities) {
 	ability.abilities = abilities;
-	this.redirect = true;
-	this.role_name = 'role';
-	this.redirect_to = '/'
-	return this;
+  return exports;
 }
 
 exports.add = function (schema) {
 	createAbilities(schema);
-
 }
 
 exports.configure = function(options) {
 	for (var i in options) {
-		this[i] = options[i];
+		ability[i] = options[i];
 		// console.log(this);
 	}
 }
@@ -31,11 +27,12 @@ authorize = function(action, target, role) {
 	res = arguments.callee.caller.arguments[1];
 
 
-	if (role == null) {
-		role = 'default';
-	}
 	if (req.user) {
 		role = req.user[role_name];
+	}
+
+	if (role == null) {
+		role = 'default';
 	}
 	// extrapolating everything from the req.route
 	if (target == null && action == null) {
@@ -46,8 +43,9 @@ authorize = function(action, target, role) {
 	}
 
 
-	if (createAbilities.redirect == true && value == false) {
-		res.redirect(createAbilities.redirect_to); 
+	if (ability.redirect == true && value == false) {
+	  req.flash("alert", ability.redirect_message);
+		res.redirect(ability.redirect_to); 
 	}
 	return !value;
 
