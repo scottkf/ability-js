@@ -6,7 +6,7 @@ A simple route-based ACL component for express.js. This won't handle actual auth
 
     npm install ability
 
-## Using this with everyauth:
+## With everyauth:
 
 This assumes you have, in your everyauth setup, a field called "role" (customizable, see below). For example, if you're using facebook:       
 
@@ -95,6 +95,10 @@ On the routes, you may specify one of 4 options, 'read', 'write', 'delete', or '
 
 - role_name, the name of the everyauth field for your role (everyauth only)
 
+
+## A simple example:
+
+[https://github.com/scottkf/expressjs-oauth](https://github.com/scottkf/expressjs-oauth)
 
 ## Todo:
 
