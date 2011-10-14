@@ -49,6 +49,23 @@ app.get('/protected', function(req, res) {
 
 This will check to see if the user is authorized based on the setup above. According to the above setup, an un-authenticated user would not be authorized for this route. 
 
+Optionally, you can specify the action and route:
+
+```javascript
+app.get('/protected', function(req, res) {
+  authorize('read', 'index');
+  res.render('protected');
+});
+```
+
+Even further, you can specify the role you want to check
+
+```javascript
+app.get('/protected', function(req, res) {
+  authorize('read', 'index', 'default');
+  res.render('protected');
+});
+```
 
 ###Route translations:
 
