@@ -42,7 +42,8 @@ Then, in the route:
 
 ```javascript
 app.get('/protected', function(req, res) {
-  authorize() || res.render('protected');
+  authorize();
+  res.render('protected');
 });
 ```
 
@@ -64,10 +65,16 @@ On the routes, you may specify one of 4 options, 'read', 'write', 'delete', or '
 	ability = require('ability');
     ability.configure({
     	redirect: true,
-    	role_name: role
+    	role_name: role,
+    	redirect_to: '/',
+    	redirect_message: 'Unauthorized'
     })
 
-- redirect, whether or not to redirect to the user if they're not authorized. By default, it will redirect a user to the home page if they're not authorized, without a flash    
+- redirect, whether or not to redirect to the user if they're not authorized. By default, it will redirect a user to the home page if they're not authorized, without a flash. 
+
+- redirect_to, where to redirect the user if authentication fails
+
+- redirect_message, if you're using req.flash, it will put the messages in there
 
 - role_name, the name of the everyauth field for your role (everyauth only)
 
@@ -76,10 +83,4 @@ On the routes, you may specify one of 4 options, 'read', 'write', 'delete', or '
 
 - Add helpers to be exposed to views
 - Add customizeable flash message for redirect
-- Fix this:
-      authorize() || res.render('protected');
-  So it can be written as:
-      authorize()
-      res.render('protected')
-  Calling res.end() directly after res.redirect, and then res.render causes an error
 - Flesh out tests more
