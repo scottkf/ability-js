@@ -22,7 +22,7 @@ exports.addHelpers = function(app) {
 	app.dynamicHelpers({
 	    able: function (req, res) {
       	if (req.user) {
-      		ability.can.role = req.user[ability.role_name];
+      		ability.role = req.user[ability.role_name];
       	}
         return ability;
 	    }
